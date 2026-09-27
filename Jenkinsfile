@@ -95,9 +95,9 @@
 
 pipeline { 
     agent { 
-        node any { 
+        
             label 'ROBOSHOP' 
-        } 
+    } 
 
         environment {
                 def appVersion = ""
