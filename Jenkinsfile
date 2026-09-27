@@ -46,7 +46,11 @@ pipeline {
                     sh """
                         echo "Installing the dependencies"
                         npm install
-                        echo "Installed the dependencies"
+                        echo "Installed
+                         the dependencies"
+
+                        npm audit fix --force
+                        echo " npm audit issues fixed "
                     """
                 }
             }
