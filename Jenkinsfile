@@ -9,6 +9,9 @@ pipeline {
 
     environment {
         def appVersion = ""
+        acc_id = "830067446715"
+        project = "roboshop"
+        component = "catalogue"
     }
 
     options {
@@ -73,10 +76,26 @@ pipeline {
         stage ('Docker build'){
             steps {
                 script{
-                    sh """
-                        echo "building the docker image"
-                         docker build -t ${appVersion} .
+                    
+                    echo "AWS ECR LOGIN "
+                    withAWS (credentials: 'aws-creds' , region: 'us-east-1'){
+                   sh """
+                    
+                    aws ecr get-login-password --region us-east-1 | docker login --username  AWS --password-stdin ${ACC_ID}.dkr.ecr.us-east-1.amazon.aws
+                    echo "building the docker image"
+                    docker build -t ${acc_id}.dkr.ecr.us-east-1.amazon.aws/${project}/${component}:${appVersion} .
+                    echo "docker image build successfully "
+                    echo "docker image pushing to the ecr "
+                    docker push ${acc_id}.dkr.ecr.us-east-1.amazon.aws/${project}/${component}:${appVersion} 
+                    echo "docker image push to ecr  successfully "
+                    
                     """
+
+                    }  
+                        
+                        echo "building the docker image"
+
+                        
                 }
             }
         }
