@@ -73,6 +73,17 @@ pipeline {
             }
         }
 
+// i didn't install and configured sonarqube server , so i keep it in comment 
+        /*  stage('Sonarqube Analysis') {
+            steps {
+               // My sonarqube server must match that name configured  in jenkins system setting
+
+               withSonarQubeEnv('sonar-server'){
+                sh "${tool sonar-8}/bin/sonar-scanner"
+               }
+            }
+        } */
+
         stage ('Docker build'){
             steps {
                 script{
