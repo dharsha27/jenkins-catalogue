@@ -26,7 +26,7 @@ pipeline {
                 script{
                     def packageJson = readJSON file: 'package.json'
                     
-                    # Extract the version property
+                    // Extract the version property
                     def appVersion = packageJson.version
                     echo " The application version is : ${appVersion}"
                 }
