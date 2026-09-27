@@ -70,6 +70,17 @@ pipeline {
             }
         }
 
+        stage ('Docker build'){
+            steps {
+                script{
+                    sh """
+                        echo "building the docker image"
+                         docker build -t ${appVersion} .
+                    """
+                }
+            }
+        }
+
         stage('Deploy') {
             steps {
                 script {
