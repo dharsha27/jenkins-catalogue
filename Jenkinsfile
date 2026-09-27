@@ -38,12 +38,12 @@ pipeline {
                 script {
                     sh """
                         echo "Building"
-                       /*  echo "Course is: ${COURSE}"
-                        echo "Hello ${params.PERSON}"
-                        echo "Biography: ${params.BIOGRAPHY}"
-                        echo "Toggle: ${params.TOGGLE}"
-                        echo "Choice: ${params.CHOICE}"
-                        echo "Password: ${params.PASSWOR */D}"
+                    //    /*  echo "Course is: ${COURSE}"
+                    //     echo "Hello ${params.PERSON}"
+                    //     echo "Biography: ${params.BIOGRAPHY}"
+                    //     echo "Toggle: ${params.TOGGLE}"
+                    //     echo "Choice: ${params.CHOICE}"
+                    //     echo "Password: ${params.PASSWOR */D}"
                     """
                 } 
             }
@@ -58,10 +58,10 @@ pipeline {
             }
         }
         stage('Deploy') {
-            when {
-                // Evaluates the boolean parameter directly
-                expression { "${params.DEPLOY}" == "true" }
-            }
+            // when {
+            //     // Evaluates the boolean parameter directly
+            //     expression { "${params.DEPLOY}" == "true" }
+            // }
             /* input {
                 message "Should we continue?"
                 ok "Yes, we should."
