@@ -1,10 +1,14 @@
-def appVersion = ""
+// def appVersion = ""
 
 pipeline {
     agent {
         node {
             label 'ROBOSHOP'
         }
+    }
+
+    environment {
+        def appVersion = ""
     }
 
     options {
