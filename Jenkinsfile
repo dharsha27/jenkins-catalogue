@@ -38,12 +38,12 @@ pipeline {
                 script {
                     sh """
                         echo "Building"
-                        echo "Course is: ${COURSE}"
+                       /*  echo "Course is: ${COURSE}"
                         echo "Hello ${params.PERSON}"
                         echo "Biography: ${params.BIOGRAPHY}"
                         echo "Toggle: ${params.TOGGLE}"
                         echo "Choice: ${params.CHOICE}"
-                        echo "Password: ${params.PASSWORD}"
+                        echo "Password: ${params.PASSWOR */D}"
                     """
                 } 
             }
