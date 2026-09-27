@@ -51,6 +51,10 @@ pipeline {
 
                         npm audit fix --force
                         echo " npm audit issues fixed "
+
+                        npm fund
+                        echo " npm fund issues fixed "
+
                     """
                 }
             }
