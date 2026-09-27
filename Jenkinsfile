@@ -81,12 +81,12 @@ pipeline {
                     withAWS (credentials: 'aws-creds' , region: 'us-east-1'){
                    sh """
                     
-                    aws ecr get-login-password --region us-east-1 | docker login --username  AWS --password-stdin ${acc_id}.dkr.ecr.us-east-1.amazon.aws
+                    aws ecr get-login-password --region us-east-1 | docker login --username  AWS --password-stdin ${acc_id}.dkr.ecr.us-east-1.amazonaws.com
                     echo "building the docker image"
-                    docker build -t ${acc_id}.dkr.ecr.us-east-1.amazon.aws/${project}/${component}:${appVersion} .
+                    docker build -t ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${appVersion} .
                     echo "docker image build successfully "
                     echo "docker image pushing to the ecr "
-                    docker push ${acc_id}.dkr.ecr.us-east-1.amazon.aws/${project}/${component}:${appVersion} 
+                    docker push ${acc_id}.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${appVersion} 
                     echo "docker image push to ecr  successfully "
                     
                     """
