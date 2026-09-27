@@ -95,7 +95,7 @@
 
 pipeline { 
     agent { 
-        node { 
+        node any { 
             label 'ROBOSHOP' 
         } 
 
