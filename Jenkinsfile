@@ -125,7 +125,7 @@ pipeline {
             steps { 
                 script { 
                     sh """ 
-                        echo "checking app version : ${appVersion}"
+                        // echo "checking app version : ${appVersion}"
                         echo "Building"
                          
                     """ 
