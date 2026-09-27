@@ -1,76 +1,73 @@
-pipeline { 
-    agent { 
+def appVersion = ""
+
+pipeline {
+    agent {
         node {
-              label 'ROBOSHOP'
+            label 'ROBOSHOP'
         }
-         
-    } 
+    }
 
-        environment {
-                def appVersion = ""
-        }
-    } 
-    
-    options { 
-        disableConcurrentBuilds() 
-        timeout(time: 15, unit: 'MINUTES') 
-    } 
+    options {
+        disableConcurrentBuilds()
+        timeout(time: 15, unit: 'MINUTES')
+    }
 
-     
-    stages { 
-        stage('Read version'){ 
-            steps{ 
-                script{ 
+    stages {
+        stage('Read version') {
+            steps {
+                script {
                     // Requires "Pipeline Utility Steps" plugin
-                    def packageJson = readJSON file: 'package.json' 
-                        appVersion = packageJson.version 
-                    echo "The application version is: ${appVersion}" 
-                } 
-            } 
-        } 
-        
-        stage('Build') { 
-            steps { 
-                script { 
-                    sh """ 
-                        // echo "checking app version : ${appVersion}"
-                        echo "Building"
-                         
-                    """ 
-                } 
-            } 
-        } 
-        
-        stage('Test') { 
-            steps { 
-                script { 
-                    sh """ 
-                        echo "Testing" 
-                    """ 
-                } 
-            } 
-        } 
-        
-        stage('Deploy') { 
-            steps { 
-                script { 
-                    sh """ 
-                        echo "Deploying" 
-                    """ 
-                } 
-            } 
-        } 
-    } 
-    
-    post { 
-        always { 
-            echo 'I will always say Hello again!' 
-        } 
-        success { 
-            echo 'I will run when success' 
-        } 
-        failure { 
-            echo 'I will Run when it is failed' 
-        } 
-    } 
+                    def packageJson = readJSON file: 'package.json'
+                    appVersion = packageJson.version
 
+                    echo "The application version is: ${appVersion}"
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    sh """
+                        echo "Checking app version: ${appVersion}"
+                        echo "Building"
+                    """
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                script {
+                    sh """
+                        echo "Testing version: ${appVersion}"
+                    """
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    sh """
+                        echo "Deploying version: ${appVersion}"
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'I will always say Hello again!'
+        }
+
+        success {
+            echo 'I will run when success'
+        }
+
+        failure {
+            echo 'I will run when it is failed'
+        }
+    }
+}
